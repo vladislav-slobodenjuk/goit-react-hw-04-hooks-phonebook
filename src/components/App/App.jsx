@@ -40,6 +40,7 @@ class App extends Component {
   }
 
   addContact = data => {
+    console.log(data);
     const isAdded = Object.values(this.state.contacts).find(
       contact => contact.name === data.name,
     );
