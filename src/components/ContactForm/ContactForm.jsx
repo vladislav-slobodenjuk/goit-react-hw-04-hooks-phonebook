@@ -1,5 +1,3 @@
-// import { Component } from 'react/cjs/react.development';
-
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
