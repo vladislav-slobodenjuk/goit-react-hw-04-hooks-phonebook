@@ -4,9 +4,7 @@ import { nanoid } from 'nanoid';
 
 import s from './ContactForm.module.scss';
 
-export default function ContactForm(props) {
-  const { onSubmit } = props;
-
+export default function ContactForm({ onSubmit }) {
   const [userName, setName] = useState('');
   const [number, setNumber] = useState('');
   const [id, setId] = useState('');

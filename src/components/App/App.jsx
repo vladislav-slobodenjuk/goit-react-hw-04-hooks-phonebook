@@ -45,15 +45,15 @@ export default function App() {
     setContacts(contacts => [...contacts, data]);
   };
 
-  const setContactsFilter = data => {
-    setFilter(data.target.value);
+  const setContactsFilter = ({ target: { value } }) => {
+    setFilter(value);
   };
 
   const filterContacts = () => {
     const lowFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
-      contact.name.toLocaleLowerCase().includes(lowFilter),
+      contact.name.toLowerCase().includes(lowFilter),
     );
   };
   const filteredContacts = filterContacts();

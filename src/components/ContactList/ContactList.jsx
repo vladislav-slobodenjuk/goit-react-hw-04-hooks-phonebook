@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import s from './ContactList.module.scss';
 
-export default function ContactList(props) {
-  const { contacts, onDelete } = props;
-
+export default function ContactList({ contacts, onDelete }) {
   return (
     <ul className={s.contactList}>
       {contacts.map(({ name, number, id }) => (
