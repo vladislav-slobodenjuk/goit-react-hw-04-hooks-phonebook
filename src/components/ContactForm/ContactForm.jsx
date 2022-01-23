@@ -1,47 +1,29 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
 
 import s from './ContactForm.module.scss';
 
 export default function ContactForm({ onSubmit }) {
   const [userName, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [id, setId] = useState('');
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
+  const handleInputChange = ({ target: { name, value } }) => {
+    if (name === 'userName') {
+      setName(value);
+    }
 
-    switch (name) {
-      case 'userName':
-        setName(value);
-        // setId(nanoid(8));
-        break;
-
-      case 'number':
-        setNumber(value);
-        // setId(nanoid(8));
-        break;
-
-      default:
-        break;
+    if (name === 'number') {
+      setNumber(value);
     }
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    const idResult = await nanoid(8);
-    setId(idResult);
-
-    const userObj = {
-      id: idResult,
+    onSubmit({
       name: userName,
       number: number,
-    };
-
-    onSubmit(userObj);
-    // this.props.onSubmit(this.state);
+    });
   };
 
   return (

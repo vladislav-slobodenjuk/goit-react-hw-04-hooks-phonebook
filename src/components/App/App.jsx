@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
@@ -33,16 +34,16 @@ export default function App() {
     localStorage.setItem(localStorageKey, JSON.stringify(contacts));
   }, [contacts]);
 
-  const addContact = data => {
-    const isAdded = Object.values(contacts).find(
-      contact => contact.name === data.name,
-    );
+  const addContact = newContact => {
+    const isAdded = contacts.find(contact => contact.name === newContact.name);
 
     if (isAdded) {
       alert('contact is added');
       return;
     }
-    setContacts(contacts => [...contacts, data]);
+
+    const contactWithId = { id: nanoid(8), ...newContact };
+    setContacts(contacts => [...contacts, contactWithId]);
   };
 
   const setContactsFilter = ({ target: { value } }) => {
@@ -60,7 +61,6 @@ export default function App() {
 
   const deleteContact = name => {
     const restContacts = contacts.filter(contact => contact.name !== name);
-
     setContacts(restContacts);
   };
 
